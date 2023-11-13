@@ -1,0 +1,101 @@
+
+
+
+
+
+This is the transcription (see also a corresponding text file) of the python script and the console results after running the code.
+The results calculated are those requested in the assignment: 
+* The total number of votes cast
+* A complete list of candidates who received votes
+* The percentage of votes each candidate won
+* The total number of votes each candidate won
+* The winner of the election based on popular vote
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PYTHON SCRIPT
+
+import pandas as pd
+
+# Load the dataset
+file_path = 'Resources/election_data.csv'
+df = pd.read_csv(file_path)
+
+# 1) Total number of votes cast from "Ballot ID"
+total_votes = len(df['Ballot ID'])
+
+# 2) Complete list of candidates who received votes from "Candidate"
+candidates_list = df['Candidate'].unique()
+
+# 3) Percentage of votes each candidate won from "Candidate"
+percentage_votes = df['Candidate'].value_counts(normalize=True) * 100
+
+# 4) Total number of votes each candidate won from "Candidate"
+total_votes_per_candidate = df['Candidate'].value_counts()
+
+# 5) Winner of the election based on popular vote from "Candidate"
+winner = total_votes_per_candidate.idxmax()
+
+# Print the results
+print("Election Results")
+print("----------------------------")
+print(f"Total Votes: {total_votes}")
+print("----------------------------")
+print("Candidates who received votes:")
+for candidate in candidates_list:
+    print(f"{candidate}: {percentage_votes[candidate]:.3f}% ({total_votes_per_candidate[candidate]})")
+print("----------------------------")
+print(f"Winner: {winner}")
+print("----------------------------")
+
+
+
+
+
+
+
+
+
+
+CODE RESULT IN THE CONSOLE
+
+runfile('/Users/hugotroche/Desktop/python-challenge/PyPoll/main_P.py', wdir='/Users/hugotroche/Desktop/python-challenge/PyPoll')
+Election Results
+----------------------------
+Total Votes: 369711
+----------------------------
+Candidates who received votes:
+Charles Casper Stockham: 23.049% (85213)
+Diana DeGette: 73.812% (272892)
+Raymon Anthony Doane: 3.139% (11606)
+----------------------------
+Winner: Diana DeGette
+----------------------------
+Challenge 3 Ð Vanderbilt Bootcamp Ð Python project	November 2023
+
+
+
+
+
+1
+Hugo H Troche
+
